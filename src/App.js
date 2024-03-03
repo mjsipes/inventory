@@ -45,19 +45,42 @@ function App() {
       .then((response) => response.json())
       .then((data) => console.log(data));
 
-    
-
-
+  
 
     items.push(item);
     setData({items:items});
     console.log(data);
   }
 
+
+  const filterData = (data) => {
+    const filteredData = [];
+    if (filters.name == "" && filters.price == "" && filters.type == "" && filters.brand == ""){
+      return data;
+    }
+    for (const item of data){
+      if (filters.name !== "" && item.name !== filters.name){
+        continue;
+      }
+      if (filters.price !== "" && item.price > filters.price){
+        continue;
+      }
+      if (filters.type !== "" && item.type !== filters.type){
+        continue;
+      }
+      if (filters.brand !== "" && item.brand !== filters.brand){
+        continue;
+      }
+      filteredData.push(item);
+
+    }
+    return filteredData;
+  }
+
   return (
     <div className="App">
       <SearchBar updateSearchParams={updateFilters} />
-      <ItemsDisplay items={data["items"]}/>
+      <ItemsDisplay items={filterData(data["items"])}/>
       <AddItem addItem={addItemToData}/>
     </div>
   );

@@ -1,3 +1,20 @@
+running the react server from the start:
+npx
+npm install react-scripts
+npx start
+
+running json server database:
+json-server db.json
+
+running sqlite databse:
+cd into backend
+node server.js
+
+
+
+
+
+
 SQLite and Databases
 
 cd into backend directory

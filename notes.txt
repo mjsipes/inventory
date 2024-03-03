@@ -10,6 +10,10 @@ running sqlite databse:
 cd into backend
 node server.js
 
+styling:
+npm install react-bootstrap bootstrap
+
+
 
 
 

@@ -1,12 +1,15 @@
 import React from 'react';
-import AddItem from './AddItem';
+import Chatbot from './Chatbot';
 
 function Gpt() {
     return (
         <div>
-            <AddItem />
+            <Chatbot />
         </div>
     );
 }
 
 export default Gpt;
+
+
+

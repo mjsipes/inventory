@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import { generateText } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
 
-import Markdown from 'react-markdown'
+import Markdown from 'react-markdown';
 
-const groq = createOpenAI({ 
+const groq = createOpenAI({
   apiKey: process.env.REACT_APP_GROQ_API_KEY,
-  baseURL: 'https://api.groq.com/openai/v1'
+  baseURL: 'https://api.groq.com/openai/v1',
 });
 
 const Chatbot = () => {
-  const [messages, setMessages] = useState([{ role: 'user', content: 'Hello' }]);
+  const [messages, setMessages] = useState([
+    { role: 'user', content: 'Hello' },
+  ]);
   const [input, setInput] = useState('');
   const [response, setResponse] = useState('');
 
@@ -35,7 +37,10 @@ const Chatbot = () => {
       });
 
       setResponse(result.text);
-      setMessages([...newMessages, { role: 'assistant', content: result.text }]);
+      setMessages([
+        ...newMessages,
+        { role: 'assistant', content: result.text },
+      ]);
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +59,7 @@ const Chatbot = () => {
       </div>
       <input type="text" value={input} onChange={handleInputChange} />
       <button onClick={handleSendMessage}>Send</button>
-      <div>{response}</div>
+      {/* <div><Markdown>{response}</Markdown></div> */}
     </div>
   );
 };

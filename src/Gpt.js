@@ -1,6 +1,5 @@
 import React from 'react';
 import './Gpt.css'; // Ensure you have the correct path to your CSS file
-import Chatbot from './Chatbot';
 import VectorSearch from './VectorSearch';
 
 function Gpt() {

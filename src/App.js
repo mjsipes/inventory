@@ -1,15 +1,15 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import MainPage from './MainPage';
 import Gpt from './Gpt';
+import MainPage from './MainPage';
 
 function App() {
   return (
     <div>
       <Routes>
-        <Route path="/" element={<Gpt />} />
-        <Route path="/a" element={<MainPage />} />
+        <Route path="/gpt" element={<Gpt />} />
+        <Route path="/" element={<MainPage />} />
       </Routes>
     </div>
   );

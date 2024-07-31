@@ -1,18 +1,15 @@
-
-
-import { useEffect, useState } from "react";
-import "./App.css";
-import SearchBar from "./SearchBar";
-import ItemsDisplay from "./ItemsDisplay";
-import AddItem from "./AddItem";
-
+import { useEffect, useState } from 'react';
+import AddItem from './AddItem';
+import './App.css';
+import ItemsDisplay from './ItemsDisplay';
+import SearchBar from './SearchBar';
 
 function MainPage() {
   const [filters, setFilters] = useState({
-    name: "",
-    price: "",
-    type: "",
-    brand: "", 
+    name: '',
+    price: '',
+    type: '',
+    brand: '',
   });
   const [data, setData] = useState({ items: [] });
   const updateFilters = (searchParams) => {
@@ -37,12 +34,12 @@ function MainPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/items");
+        const response = await fetch('http://localhost:3001/items');
         const data = await response.json();
-        console.log("Fetch result:", data);
+        console.log('Fetch result:', data);
         setData({ items: data });
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error('Error fetching data:', error);
       }
     };
 
@@ -77,9 +74,9 @@ function MainPage() {
   //-------------------------------------------------------------------------------
 
   const deleteItem = (item) => {
-    const items = data["items"];
+    const items = data['items'];
     fetch(`http://localhost:3001/items/${item.id}`, {
-      method: "DELETE",
+      method: 'DELETE',
     })
       .then((response) => {
         if (response.ok) {
@@ -89,14 +86,14 @@ function MainPage() {
         }
       })
       .catch((error) => {
-        console.error("Error deleting item:", error);
+        console.error('Error deleting item:', error);
       });
   };
 
   //--------------------------------------------------------------------------------------------------------------------------
 
   const addItemToData = (item) => {
-    let items = data["items"];
+    let items = data['items'];
     item.id = items.length;
 
     //--------------------------------------------------------------------------------------------------------------------------
@@ -117,13 +114,13 @@ function MainPage() {
 
     //adding to sqlite
     const requestOptions2 = {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(item),
     };
-    fetch("http://localhost:3001/items", requestOptions2)
+    fetch('http://localhost:3001/items', requestOptions2)
       .then((response) => response.json())
       .then((data) => console.log(data));
 
@@ -137,24 +134,24 @@ function MainPage() {
   const filterData = (data) => {
     const filteredData = [];
     if (
-      filters.name === "" &&
-      filters.price === "" &&
-      filters.type === "" &&
-      filters.brand === ""
+      filters.name === '' &&
+      filters.price === '' &&
+      filters.type === '' &&
+      filters.brand === ''
     ) {
       return data;
     }
     for (const item of data) {
-      if (filters.name !== "" && item.name !== filters.name) {
+      if (filters.name !== '' && item.name !== filters.name) {
         continue;
       }
-      if (filters.price !== "" && item.price > filters.price) {
+      if (filters.price !== '' && item.price > filters.price) {
         continue;
       }
-      if (filters.type !== "" && item.type !== filters.type) {
+      if (filters.type !== '' && item.type !== filters.type) {
         continue;
       }
-      if (filters.brand !== "" && item.brand !== filters.brand) {
+      if (filters.brand !== '' && item.brand !== filters.brand) {
         continue;
       }
       filteredData.push(item);
@@ -164,15 +161,14 @@ function MainPage() {
 
   return (
     <div className="container">
-      hello worldd
+      <div className="row mt-3">
+        <SearchBar updateSearchParams={updateFilters} />
+      </div>
       <div className="row mt-3">
         <ItemsDisplay
           deleteItem={deleteItem}
-          items={filterData(data["items"])}
+          items={filterData(data['items'])}
         />
-      </div>
-      <div className="row mt-3">
-        <SearchBar updateSearchParams={updateFilters} />
       </div>
       <div className="row mt-3">
         <AddItem addItem={addItemToData} />

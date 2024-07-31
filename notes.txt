@@ -2,13 +2,14 @@ running the react server from the start:
 npx
 npm install react-scripts
 npx start
+npm start
 
 running json server database:
 json-server db.json
 
 running sqlite databse:
 npm install sqlite3 express
-cd into backend
+cd backend
 node server.js
 
 

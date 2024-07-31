@@ -16,20 +16,6 @@ function MainPage() {
     setFilters(searchParams);
   };
 
-  //--------------------------------------------------------------------------------------------------------------------------
-
-  // // getting from json server
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/items")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log("Fetch result:", data);
-  //       setData({ items: data });
-  //     });
-  // }, []);
-
-  //-------------------------------------------------------------------------------
-
   // getting from sqlite server
   useEffect(() => {
     const fetchData = async () => {
@@ -45,33 +31,6 @@ function MainPage() {
 
     fetchData();
   }, []);
-
-  //--------------------------------------------------------------------------------------------------------------------------
-
-  //--------------------------------------------------------------------------------------------------------------------------
-
-  // const deleteItem = (item) => {
-  //   const items = data["items"];
-  //   const requestOptions = {
-  //     method: "DELETE",
-  //   };
-
-  //   fetch(`http://localhost:3000/items/${item.id}`, requestOptions)
-  //     .then((response) => {
-  //       if (response.ok) {
-  //         // If the delete request is successful, remove the item from the local state
-  //         const updatedItems = items.filter((i) => i.id !== item.id);
-  //         setData({ items: updatedItems });
-  //       } else {
-  //         throw new Error("Failed to delete item");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error deleting item:", error);
-  //     });
-  // };
-
-  //-------------------------------------------------------------------------------
 
   const deleteItem = (item) => {
     const items = data['items'];
@@ -90,29 +49,11 @@ function MainPage() {
       });
   };
 
-  //--------------------------------------------------------------------------------------------------------------------------
-
   const addItemToData = (item) => {
     let items = data['items'];
     item.id = items.length;
 
-    //--------------------------------------------------------------------------------------------------------------------------
-
-    // // adding to json-server
-    // const requestOptions = {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(item),
-    // };
-    // fetch("http://localhost:3000/items", requestOptions)
-    //   .then((response) => response.json())
-    //   .then((data) => console.log(data));
-
-    //-------------------------------------------------------------------------------
-
-    //adding to sqlite
+    //adding to json/sqlite
     const requestOptions2 = {
       method: 'POST',
       headers: {
@@ -123,8 +64,6 @@ function MainPage() {
     fetch('http://localhost:3001/items', requestOptions2)
       .then((response) => response.json())
       .then((data) => console.log(data));
-
-    //--------------------------------------------------------------------------------------------------------------------------
 
     items.push(item);
     setData({ items: items });

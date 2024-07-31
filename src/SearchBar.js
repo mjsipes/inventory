@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 function SearchBar(props) {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [price, setPrice] = useState();
-  const [type, setType] = useState("");
-  const [brand, setBrand] = useState("");
+  const [type, setType] = useState('');
+  const [brand, setBrand] = useState('');
 
   const searchButtonPressed = () => {
     props.updateSearchParams({
@@ -13,6 +13,10 @@ function SearchBar(props) {
       type: type,
       brand: brand,
     });
+    setName('');
+    setPrice('');
+    setType('');
+    setBrand('');
   };
 
   return (
